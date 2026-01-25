@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 
+-- -------------------
 -- Builtin Keymaps
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<C-d>', '<C-d>zz')
@@ -35,40 +36,26 @@ end, { desc = '[O]utput [c]ommand to current buffer' })
 -- map('n', 'K', ':m .-2<CR>==')
 -- map('n', 'J', ':m .+1<CR>==')
 
+-- -------------------
 -- Plugin Keymaps
 local builtin = require 'telescope.builtin'
-map({ 'n' }, '_', function()
+map('n', '_', function()
   require('oil').toggle_float()
 end, { desc = 'Open parent directory' })
-map(
-  { 'n' },
-  '<leader>u',
-  vim.cmd.UndotreeToggle,
-  { desc = 'Toggle Undotree view' }
-)
-map({ 'n' }, '<leader>fo', builtin.find_files, { desc = 'Telescope files' })
-map({ 'n' }, '<leader>ff', builtin.live_grep, { desc = 'Telescope grep' })
-map({ 'n' }, '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-map({ 'n' }, '<leader>fr', builtin.registers, { desc = 'Telescope registers' })
-map({ 'n' }, '<leader>fh', builtin.help_tags, { desc = 'Telescope help' })
-map(
-  { 'n' },
-  '<leader>fg',
-  builtin.git_status,
-  { desc = 'Telescope git status files' }
-)
-map(
-  { 'n' },
-  '<leader>ft',
-  vim.cmd.Telescope,
-  { desc = 'Telescope the telescope' }
-)
-map({ 'n' }, '<leader>F', function()
+map('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Toggle Undotree view' })
+map('n', '<leader>fo', builtin.find_files, { desc = 'Telescope files' })
+map('n', '<leader>ff', builtin.live_grep, { desc = 'Telescope grep' })
+map('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+map('n', '<leader>fr', builtin.registers, { desc = 'Telescope registers' })
+map('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help' })
+map('n', '<leader>fg', builtin.git_status, { desc = 'Telescope git' })
+map('n', '<leader>ft', vim.cmd.Telescope, { desc = 'Telescope the telescope' })
+map('n', '<leader>F', function()
   require('conform').format { async = true, lsp_fallback = true }
 end, { desc = 'Format buffer' })
-map({ 'n' }, '<leader>t', function()
+map('n', '<leader>t', function()
   require('neotest').run.run()
 end, { desc = 'Run nearest test' })
-map({ 'n' }, '<leader>T', function()
+map('n', '<leader>T', function()
   require('neotest').run.run(vim.fn.expand '%')
 end, { desc = 'Run all tests in file' })
