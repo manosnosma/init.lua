@@ -1,0 +1,210 @@
+vim.cmd.colorscheme 'rose-pine'
+
+require('mini.icons').setup {}
+require('oil').setup {
+  lsp_file_methods = {
+    enabled = true,
+    timeout_ms = 1000,
+    autosave_changes = true,
+  },
+  columns = { 'icon' },
+  float = {
+    max_width = 0.3,
+    max_height = 0.6,
+    border = 'rounded',
+  },
+  default_file_explorer = true,
+  delete_to_trash = true,
+  skip_confirm_for_simple_edits = false,
+}
+
+require('telescope').setup {
+  defaults = {
+    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+    mappings = {
+      i = {
+        ['<esc>'] = require('telescope.actions').close,
+      },
+    },
+  },
+}
+
+if vim.b.bigfile then
+  goto skip
+end
+
+require('nvim-treesitter').setup {
+  ensure_installed = {
+    'bash',
+    'blade',
+    'c',
+    'css',
+    'elixir',
+    'eex',
+    'git_config',
+    'gitcommit',
+    'go',
+    'heex',
+    'html',
+    'javascript',
+    'jsdoc',
+    'json',
+    'lua',
+    'luadoc',
+    'markdown',
+    'php',
+    'php_only',
+    'phpdoc',
+    'query',
+    'rust',
+    'sql',
+    'ssh_config',
+    'toml',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'vue',
+    'xml',
+  },
+  sync_install = false,
+  auto_install = true,
+  indent = { enable = true },
+  highlight = {
+    enable = true,
+    disable = function(_, buf)
+      return vim.api.nvim_bug_line_count(buf) >= 5000
+    end,
+    additional_vim_regex_highlight = false,
+  },
+}
+
+----------------------------------------------------------------------
+-- LSP + CMP + LuaSnip + Conform + Neotest Configurations
+----------------------------------------------------------------------
+local vue_language_server_path = vim.fn.stdpath 'data'
+  .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
+
+vim.lsp.config('vtsls', {
+  settings = {
+    vtsls = {
+      tsserver = {
+        globalPlugins = {
+          {
+            name = '@vue/typescript-plugin',
+            location = vue_language_server_path,
+            languages = { 'vue' },
+            configNamespace = 'typescript',
+          },
+        },
+      },
+    },
+  },
+  filetypes = {
+    'typescript',
+    'javascript',
+    'javascriptreact',
+    'typescriptreact',
+    'vue',
+  },
+})
+
+require('mason').setup {}
+require('mason-lspconfig').setup {
+  ensure_installed = {
+    'cssls',
+    'elixirls',
+    'emmet_ls',
+    'laravel_ls',
+    'pyright',
+    'rust_analyzer',
+    'lua_ls',
+    'intelephense',
+    'tailwindcss',
+    'vtsls',
+    'vue_ls',
+  },
+}
+
+local cmp = require 'cmp'
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert {
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<CR>'] = cmp.mapping.confirm { select = false },
+
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-y>'] = cmp.mapping.confirm { select = true },
+
+    ['<C-Space>'] = cmp.mapping.complete(),
+  },
+  sources = cmp.config.sources {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+    {
+      name = 'spell',
+      option = {
+        keep_all_entries = false,
+        enable_in_context = function()
+          return true
+        end,
+      },
+    },
+  },
+}
+
+require('conform').setup {
+  notify_on_error = true,
+  format_on_save = function(bufnr)
+    local disable_filetypes = {
+      --php = true,
+    }
+    return {
+      timeout_ms = 500,
+      lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+    }
+  end,
+  formatters_by_ft = {
+    c = { 'clang-format' },
+    cpp = { 'clang-format' },
+    lua = { 'stylua' },
+    go = { 'gofmt' },
+    javascript = { 'prettier' },
+    typescript = { 'prettier' },
+    elixir = { 'mix' },
+    heex = { 'mix' },
+    php = { 'pint', 'php-cs-fixer' },
+    blade = { 'pint' },
+    vue = { 'pint', 'prettier' },
+  },
+}
+
+require('neotest').setup {
+  adapters = {
+    require 'neotest-pest',
+    require 'neotest-elixir',
+  },
+}
+
+----------------------------------------------------------------------
+-- Some small nice things
+----------------------------------------------------------------------
+require('remember').setup {}
+require('numb').setup {}
+require('nvim-toggler').setup {}
+
+require('gitsigns').setup {
+  current_line_blame = true,
+}
+require('marks').setup {
+  builtin_marks = { '<', '>', '^' },
+}
+
+::skip::

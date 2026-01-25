@@ -1,0 +1,5 @@
+require 'manosnosma.options'
+require 'manosnosma.plugins'
+require 'manosnosma.plugin_configs'
+require 'manosnosma.keymaps'
+require 'manosnosma.autocmds'
