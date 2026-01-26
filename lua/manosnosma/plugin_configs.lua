@@ -20,7 +20,7 @@ require("oil").setup({
 
 require("telescope").setup({
   defaults = {
-    borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+    -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     mappings = {
       i = {
         ["<esc>"] = require("telescope.actions").close,
@@ -28,6 +28,8 @@ require("telescope").setup({
     },
   },
 })
+
+require("which-key").setup({})
 
 if vim.b.bigfile then
   goto skip

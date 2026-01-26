@@ -62,13 +62,6 @@ autocmd("BufReadPre", {
   end,
 })
 
--- Which key
-autocmd("VimEnter", {
-  callback = function()
-    require("which-key").setup({})
-  end,
-})
-
 -- Enable Tree-sitter globally
 autocmd("FileType", {
   pattern = "*",
