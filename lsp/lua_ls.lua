@@ -72,14 +72,14 @@ return {
     Lua = {
       -- runtime = { version = "Lua 5.1" },
       completion = {
-        callSnippet = 'Replace',
+        callSnippet = "Replace",
       },
       diagnostics = {
-        globals = { 'vim' },
+        globals = { "vim" },
       },
 
       codeLens = { enable = true },
-      hint = { enable = true, semicolon = 'Disable' },
+      hint = { enable = true, semicolon = "Disable" },
     },
   },
 }
