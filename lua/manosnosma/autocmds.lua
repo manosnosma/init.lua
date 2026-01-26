@@ -17,6 +17,10 @@ autocmd("TextYankPost", {
 autocmd("FileType", {
   pattern = vim.b.treesitter_langs,
   callback = function()
+    if vim.b.bigfile then
+      return
+    end
+
     vim.treesitter.start()
 
     -- Enable Treesitter-based folding
@@ -74,22 +78,6 @@ autocmd("BufReadPre", {
     local ok, stat = pcall(vim.loop.fs_stat, args.file)
     vim.b.bigfile = ok and stat and stat.size > 1024
   end,
-})
-
--- Enable Tree-sitter globally
-autocmd("FileType", {
-  pattern = "*",
-  callback = function()
-    if vim.b.bigfile then
-      return
-    end
-    pcall(vim.treesitter.start)
-  end,
-})
-
--- Lsp Binds
-autocmd("LspAttach", {
-  callback = function(args) end,
 })
 
 -- PHP Stuff
