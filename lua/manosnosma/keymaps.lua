@@ -32,6 +32,19 @@ end, { desc = "[O]utput [c]ommand to current buffer" })
 -- map('n', 'J', ':m .+1<CR>==')
 
 -- -------------------
+-- LSP Keymaps
+map("n", "gd", vim.lsp.buf.definition)
+map("n", "H", vim.lsp.buf.hover)
+map("n", "<leader>vws", vim.lsp.buf.workspace_symbol)
+map("n", "<leader>vd", vim.diagnostic.open_float)
+map("n", "<leader>vca", vim.lsp.buf.code_action)
+map("n", "<leader>vrr", vim.lsp.buf.references)
+map("n", "<leader>vrn", vim.lsp.buf.rename)
+map("i", "<C-h>", vim.lsp.buf.signature_help)
+map("n", "[d", vim.diagnostic.goto_next)
+map("n", "]d", vim.diagnostic.goto_prev)
+
+-- -------------------
 -- Plugin Keymaps
 map("n", "_", function()
   require("oil").toggle_float()
@@ -51,3 +64,7 @@ map("n", "<leader>t", require("neotest").run.run, { desc = "Run nearest test" })
 map("n", "<leader>T", function()
   require("neotest").run.run(vim.fn.expand("%"))
 end, { desc = "Run all tests in file" })
+map("n", "<leader>q", require("quicker").toggle, { desc = "Toggle quickfix" })
+map("n", "<leader>l", function()
+  require("quicker").toggle({ loclist = true })
+end, { desc = "Toggle loclist" })

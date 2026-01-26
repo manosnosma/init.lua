@@ -30,6 +30,7 @@ vim.pack.add({
   { src = "https://github.com/chentoast/marks.nvim" },
 
   { src = "https://github.com/stevearc/oil.nvim" },
+  { src = "https://github.com/stevearc/quicker.nvim" },
   { src = "https://github.com/nvim-mini/mini.icons" },
 
   { src = "https://github.com/nvim-telescope/telescope.nvim", tag = "v0.2.1" },

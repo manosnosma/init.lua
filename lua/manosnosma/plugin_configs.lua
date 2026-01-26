@@ -30,6 +30,22 @@ require("telescope").setup({
 })
 
 require("which-key").setup({})
+require("quicker").setup({
+  keys = {
+    {
+      ">",
+      function()
+        require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
+      end,
+      desc = "Expand quickfix context",
+    },
+    {
+      "<",
+      require("quicker").collapse,
+      desc = "Collapse quickfix context",
+    },
+  },
+})
 
 if vim.b.bigfile then
   goto skip

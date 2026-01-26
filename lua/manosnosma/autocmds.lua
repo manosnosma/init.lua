@@ -75,31 +75,7 @@ autocmd("FileType", {
 
 -- Lsp Binds
 autocmd("LspAttach", {
-  callback = function(args)
-    local map = function(mode, lhs, rhs)
-      vim.keymap.set(mode, lhs, rhs, { buffer = args.buf })
-    end
-
-    if vim.b.bigfile then
-      vim.diagnostic.show(nil, args.buf)
-    else
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if client then
-        client.server_capabilities.semanticTokensProvider = nil
-      end
-    end
-
-    map("n", "gd", vim.lsp.buf.definition)
-    map("n", "H", vim.lsp.buf.hover)
-    map("n", "<leader>vws", vim.lsp.buf.workspace_symbol)
-    map("n", "<leader>vd", vim.diagnostic.open_float)
-    map("n", "<leader>vca", vim.lsp.buf.code_action)
-    map("n", "<leader>vrr", vim.lsp.buf.references)
-    map("n", "<leader>vrn", vim.lsp.buf.rename)
-    map("i", "<C-h>", vim.lsp.buf.signature_help)
-    map("n", "[d", vim.diagnostic.goto_next)
-    map("n", "]d", vim.diagnostic.goto_prev)
-  end,
+  callback = function(args) end,
 })
 
 -- PHP Stuff
