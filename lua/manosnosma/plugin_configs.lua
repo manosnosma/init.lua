@@ -99,8 +99,14 @@ require("nvim-treesitter").setup({
 ----------------------------------------------------------------------
 -- LSP + CMP + LuaSnip + Conform + Neotest Configurations
 ----------------------------------------------------------------------
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local vue_language_server_path = vim.fn.stdpath("data")
   .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+
+-- Apply to all LSP servers
+vim.lsp.config("*", {
+  capabilities = capabilities,
+})
 
 vim.lsp.config("vtsls", {
   settings = {
@@ -163,9 +169,12 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
+    { name = "nvim_lsp_signature_help" },
     { name = "luasnip" },
-    { name = "path" },
-    { name = "buffer" },
+    {
+      name = "async_path",
+      option = {},
+    },
     {
       name = "spell",
       option = {
@@ -175,6 +184,7 @@ cmp.setup({
         end,
       },
     },
+    { name = "buffer" },
   }),
 })
 
