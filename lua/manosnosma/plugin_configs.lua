@@ -52,46 +52,12 @@ if vim.b.bigfile then
 end
 
 require("nvim-treesitter").setup({
-  ensure_installed = {
-    "bash",
-    "blade",
-    "c",
-    "css",
-    "elixir",
-    "eex",
-    "git_config",
-    "gitcommit",
-    "go",
-    "heex",
-    "html",
-    "javascript",
-    "jsdoc",
-    "json",
-    "lua",
-    "luadoc",
-    "markdown",
-    "php",
-    "php_only",
-    "phpdoc",
-    "query",
-    "rust",
-    "sql",
-    "ssh_config",
-    "toml",
-    "typescript",
-    "vim",
-    "vimdoc",
-    "vue",
-    "xml",
-  },
+  ensure_installed = vim.b.treesitter_langs,
   sync_install = false,
   auto_install = true,
   indent = { enable = true },
   highlight = {
     enable = true,
-    disable = function(_, buf)
-      return vim.api.nvim_bug_line_count(buf) >= 5000
-    end,
     additional_vim_regex_highlight = false,
   },
 })

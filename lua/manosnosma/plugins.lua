@@ -1,12 +1,7 @@
 vim.pack.add({
   { src = "https://github.com/rose-pine/neovim", name = "rose-pine" },
-  { src = "https://github.com/f-person/auto-dark-mode.nvim" },
 
-  {
-    src = "https://github.com/nvim-treesitter/nvim-treesitter",
-    version = "main",
-    build = ":TSUpdate",
-  },
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 
   { src = "https://github.com/neovim/nvim-lspconfig" },
   { src = "https://github.com/williamboman/mason.nvim" },

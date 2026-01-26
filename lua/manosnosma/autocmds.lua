@@ -14,6 +14,20 @@ autocmd("TextYankPost", {
   end,
 })
 
+autocmd("FileType", {
+  pattern = vim.b.treesitter_langs,
+  callback = function()
+    vim.treesitter.start()
+
+    -- Enable Treesitter-based folding
+    vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.wo[0][0].foldmethod = "expr"
+
+    -- Treesitter-based indentation
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
+
 -- Reload externally changed files
 autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   command = "checktime",
