@@ -57,6 +57,7 @@ vim.b.treesitter_langs = {
   "bash",
   "blade",
   "c",
+  "cpp",
   "css",
   "elixir",
   "eex",

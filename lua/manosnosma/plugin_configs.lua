@@ -66,8 +66,6 @@ require("nvim-treesitter").setup({
 -- LSP + CMP + LuaSnip + Conform + Neotest Configurations
 ----------------------------------------------------------------------
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local vue_language_server_path = vim.fn.stdpath("data")
-  .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
 
 -- Apply to all LSP servers
 vim.lsp.config("*", {
@@ -81,7 +79,8 @@ vim.lsp.config("vtsls", {
         globalPlugins = {
           {
             name = "@vue/typescript-plugin",
-            location = vue_language_server_path,
+            location = vim.fn.stdpath("data")
+              .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
             languages = { "vue" },
             configNamespace = "typescript",
           },

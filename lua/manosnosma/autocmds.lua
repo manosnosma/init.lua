@@ -80,6 +80,20 @@ autocmd("BufReadPre", {
   end,
 })
 
+-- Run C files
+autocmd("FileType", {
+  pattern = "c",
+  callback = function()
+    vim.opt_local.makeprg = "clang % -o %:r"
+
+    vim.keymap.set("n", "<leader>R", function()
+      vim.cmd("make")
+      vim.cmd('echo "=== compiling and running: ' .. vim.fn.expand("%:r") .. '.c ==="')
+      vim.cmd("!./%:r")
+    end, { buffer = true, silent = true })
+  end,
+})
+
 -- PHP Stuff
 autocmd("FileType", {
   pattern = "php",
