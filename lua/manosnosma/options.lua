@@ -1,5 +1,3 @@
-vim.b.bigfile = false
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.loaded_perl_provider = 0
@@ -7,10 +5,10 @@ vim.g.loaded_ruby_provider = 0
 
 vim.opt.winborder = "rounded"
 vim.opt.mouse = ""
-vim.opt.termguicolors = not vim.b.bigfile
+vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
-vim.opt.autoread = not vim.b.bigfile
+vim.opt.autoread = true
 
 -- Tabs
 vim.opt.tabstop = 4 -- how '\t'abs are displayed
@@ -20,29 +18,27 @@ vim.opt.expandtab = false -- convert tabs into spaces
 vim.opt.breakindent = true -- Affects line wrapping only
 vim.opt.smartindent = false -- tree-sitter handles it
 
-if not vim.b.bigfile then
-  vim.opt.isfname:append("@-@")
-  vim.opt.path:append("**")
-end
+vim.opt.isfname:append("@-@")
+vim.opt.path:append("**")
 
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.undodir = os.getenv("HOME") .. "/.local/state/nvim/undodir"
-vim.opt.undofile = not vim.b.bigfile
+vim.opt.undofile = true
 
-vim.opt.cursorline = not vim.b.bigfile
+vim.opt.cursorline = true
 vim.opt.scrolloff = 2
 
-vim.opt.spell = not vim.b.bigfile
+vim.opt.spell = true
 vim.opt.spelllang = { "en_us", "el" }
 
 vim.diagnostic.config({
-  update_in_insert = not vim.b.bigfile,
+  update_in_insert = true,
   severity_sort = true,
-  virtual_text = not vim.b.bigfile,
+  virtual_text = true,
   virtual_lines = false,
-  signs = not vim.b.bigfile,
-  underline = not vim.b.bigfile,
+  signs = true,
+  underline = true,
   float = {
     focusable = false,
     style = "minimal",

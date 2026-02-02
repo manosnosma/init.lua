@@ -47,10 +47,6 @@ require("quicker").setup({
   },
 })
 
-if vim.b.bigfile then
-  goto skip
-end
-
 require("nvim-treesitter").setup({
   ensure_installed = vim.b.treesitter_langs,
   sync_install = false,
@@ -199,5 +195,3 @@ require("gitsigns").setup({
 require("marks").setup({
   builtin_marks = { "<", ">", "^" },
 })
-
-::skip::

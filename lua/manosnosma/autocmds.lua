@@ -7,9 +7,6 @@ autocmd("TextYankPost", {
   desc = "Highlight when yanking text",
   group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
   callback = function()
-    if vim.b.bigfile then
-      return
-    end
     vim.highlight.on_yank()
   end,
 })
@@ -17,10 +14,6 @@ autocmd("TextYankPost", {
 autocmd("FileType", {
   pattern = vim.b.treesitter_langs,
   callback = function()
-    if vim.b.bigfile then
-      return
-    end
-
     vim.treesitter.start()
 
     -- Enable Treesitter-based folding
@@ -55,9 +48,6 @@ autocmd("FileType", {
 -- Auto trim trailing white-space when saving
 autocmd("BufWritePre", {
   callback = function()
-    if vim.b.bigfile then
-      return
-    end
     vim.cmd("%s/\\s\\+$//e")
     -- vim.cmd("%s/\\n\\+\\%$//e")
   end,
@@ -71,14 +61,6 @@ vim.cmd([[
     " highlight ColorColumn ctermbg=red ctermfg=blue
     " exec 'set colorcolumn='.join(range(2,80,3), ',')
 ]])
-
--- Calculate vim.b.bigfile
-autocmd("BufReadPre", {
-  callback = function(args)
-    local ok, stat = pcall(vim.loop.fs_stat, args.file)
-    vim.b.bigfile = ok and stat and stat.size > 1024
-  end,
-})
 
 -- Run C files
 autocmd("FileType", {
@@ -116,9 +98,6 @@ autocmd("FileType", {
       vim.cmd("copen")
     end, {})
 
-    if vim.b.bigfile then
-      return
-    end
     vim.opt_local.iskeyword:append("$")
   end,
 })
