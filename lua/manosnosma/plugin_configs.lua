@@ -1,23 +1,5 @@
 vim.cmd.colorscheme("rose-pine")
 
-require("mini.icons").setup({})
-require("oil").setup({
-  lsp_file_methods = {
-    enabled = true,
-    timeout_ms = 1000,
-    autosave_changes = true,
-  },
-  columns = { "icon" },
-  float = {
-    max_width = 0.3,
-    max_height = 0.6,
-    border = "rounded",
-  },
-  default_file_explorer = true,
-  delete_to_trash = true,
-  skip_confirm_for_simple_edits = false,
-})
-
 require("telescope").setup({
   defaults = {
     -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
@@ -25,24 +7,6 @@ require("telescope").setup({
       i = {
         ["<esc>"] = require("telescope.actions").close,
       },
-    },
-  },
-})
-
-require("which-key").setup({})
-require("quicker").setup({
-  keys = {
-    {
-      ">",
-      function()
-        require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
-      end,
-      desc = "Expand quickfix context",
-    },
-    {
-      "<",
-      require("quicker").collapse,
-      desc = "Collapse quickfix context",
     },
   },
 })
@@ -183,12 +147,49 @@ require("neotest").setup({
 })
 
 ----------------------------------------------------------------------
--- Some small nice things
+-- File Management
 ----------------------------------------------------------------------
+require("mini.icons").setup({})
+require("oil").setup({
+  lsp_file_methods = {
+    enabled = true,
+    timeout_ms = 1000,
+    autosave_changes = true,
+  },
+  columns = { "icon" },
+  float = {
+    max_width = 0.3,
+    max_height = 0.6,
+    border = "rounded",
+  },
+  default_file_explorer = true,
+  delete_to_trash = true,
+  skip_confirm_for_simple_edits = false,
+})
+require("quicker").setup({
+  keys = {
+    {
+      ">",
+      function()
+        require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
+      end,
+      desc = "Expand quickfix context",
+    },
+    {
+      "<",
+      require("quicker").collapse,
+      desc = "Collapse quickfix context",
+    },
+  },
+})
+
+----------------------------------------------------------------------
+-- Nice to have
+----------------------------------------------------------------------
+require("which-key").setup({})
 require("remember").setup({})
 require("numb").setup({})
 require("nvim-toggler").setup({})
-
 require("gitsigns").setup({
   current_line_blame = true,
 })
