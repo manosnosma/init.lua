@@ -10,6 +10,8 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.autoread = true
 
+vim.opt.statusline = "%{pathshorten(expand('%:~:.'))} %h%m%r%=%{&filetype} %-14.(%l,%c%V%) %P"
+
 -- Tabs
 vim.opt.tabstop = 4 -- how '\t'abs are displayed
 vim.opt.softtabstop = 0 -- 0 means use shiftwidth
