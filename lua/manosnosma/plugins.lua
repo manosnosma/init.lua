@@ -23,7 +23,7 @@ vim.pack.add({
   { src = "https://github.com/jfpedroza/neotest-elixir" },
 
   { src = "https://github.com/lewis6991/gitsigns.nvim" },
-  { src = "https://github.com/chentoast/marks.nvim" },
+  -- { src = "https://github.com/chentoast/marks.nvim" },
 
   { src = "https://github.com/stevearc/oil.nvim" },
   { src = "https://github.com/stevearc/quicker.nvim" },
@@ -39,13 +39,13 @@ vim.pack.add({
   -- { src = "https://github.com/glts/vim-magnum" },
   -- { src = "https://github.com/glts/vim-radical" },
   -- { src = "https://github.com/tpope/vim-characterize" },
+  -- { src = "https://github.com/tpope/vim-fugitive" },
   -- { src = "https://github.com/tpope/vim-sleuth" },
   -- { src = "https://github.com/tpope/vim-speeddating" },
   { src = "https://github.com/tpope/vim-surround" },
   { src = "https://github.com/tpope/vim-repeat" },
-  { src = "https://github.com/tpope/vim-fugitive" },
 
-  { src = "https://github.com/folke/which-key.nvim" },
   { src = "https://github.com/mbbill/undotree" },
+  { src = "https://github.com/folke/which-key.nvim" },
   { src = "https://github.com/wakatime/vim-wakatime" },
 })

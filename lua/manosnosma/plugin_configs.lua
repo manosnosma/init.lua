@@ -19,11 +19,8 @@ vim.cmd.colorscheme("rose-pine")
 
 require("telescope").setup({
   defaults = {
-    -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     mappings = {
-      i = {
-        ["<esc>"] = require("telescope.actions").close,
-      },
+      i = { ["<esc>"] = require("telescope.actions").close },
     },
   },
 })
@@ -209,7 +206,4 @@ require("numb").setup({})
 require("nvim-toggler").setup({})
 require("gitsigns").setup({
   current_line_blame = true,
-})
-require("marks").setup({
-  builtin_marks = { "<", ">", "^" },
 })
