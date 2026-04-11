@@ -30,6 +30,10 @@ return {
   cmd = { "intelephense", "--stdio" },
   filetypes = { "php" },
   root_markers = { ".git", "composer.json" },
+  init_options = {
+    storagePath = vim.fn.stdpath("cache") .. "/intelephense",
+    globalStoragePath = vim.fn.stdpath("data") .. "/intelephense",
+  },
   settings = {
     intelephense = {
       stubs = {
