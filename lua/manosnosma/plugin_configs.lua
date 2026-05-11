@@ -88,6 +88,10 @@ require("mason-lspconfig").setup({
   },
 })
 
+vim.lsp.config("laravel_ls", {
+  filetypes = { "blade" }, -- Only handle Blade, let intelephense handle PHP
+})
+
 local cmp = require("cmp")
 cmp.setup({
   snippet = {
