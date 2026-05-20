@@ -211,3 +211,4 @@ require("nvim-toggler").setup({})
 require("gitsigns").setup({
   current_line_blame = true,
 })
+require("render-markdown").setup({})

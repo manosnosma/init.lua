@@ -49,4 +49,5 @@ vim.pack.add({
   { src = "https://github.com/mbbill/undotree" },
   { src = "https://github.com/folke/which-key.nvim" },
   { src = "https://github.com/wakatime/vim-wakatime" },
+  { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 })
