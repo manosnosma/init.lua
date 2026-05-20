@@ -26,7 +26,7 @@ require("telescope").setup({
 })
 
 require("nvim-treesitter").setup({
-  ensure_installed = vim.b.treesitter_langs,
+  ensure_installed = vim.g.treesitter_langs,
   sync_install = false,
   auto_install = true,
   indent = { enable = true },

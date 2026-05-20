@@ -12,7 +12,7 @@ autocmd("TextYankPost", {
 })
 
 autocmd("FileType", {
-  pattern = vim.b.treesitter_langs,
+  pattern = vim.g.treesitter_langs,
   callback = function()
     vim.treesitter.start()
 

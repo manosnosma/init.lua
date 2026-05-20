@@ -51,7 +51,7 @@ vim.diagnostic.config({
   },
 })
 
-vim.b.treesitter_langs = {
+vim.g.treesitter_langs = {
   "bash",
   "blade",
   "c",
